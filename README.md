@@ -13,7 +13,7 @@ Machine Learning (ML) is the method of applying programmatic and statistical com
 
 Generally speaking, machine learning projects follow the same process. Data ingestion, data cleaning, exploratory data analysis, feature engineering and finally machine learning. Just a reminder the process is not linear and you might find you have to jump back and forth between different stages.
 
-Machine learning tasks are usually split into three categories; supervised, unsupervised and reinforcement. For this competition, our task is supervised learning.
+Machine learning tasks are usually split into three categories; supervised,unsupervised and reinforcement. For this competition, our task is supervised learning.
 
 Supervised learning uses examples and labels to find patterns in data.
 
