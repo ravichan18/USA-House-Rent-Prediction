@@ -15,6 +15,6 @@ Generally speaking, machine learning projects follow the same process. Data inge
 
 Machine learning tasks are usually split into three categories; supervised, unsupervised and reinforcement. For this competition, our task is supervised learning.
 
-Supervised learning uses examples and labels to find patterns in data
+Supervised learning uses examples and labels to find patterns in data.
 
 It’s easy to recognise the type of machine learning task in front of you from the data you have and your objective. We’ve been given housing data consisting of features and labels, and we’re tasked with predicting the price based on various features defined.
