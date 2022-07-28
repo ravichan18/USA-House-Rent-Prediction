@@ -1,5 +1,7 @@
 Machine Learning - Predict USA Housing Price
 
+Check out the jupiter notebook here: https://jovian.ai/ivarchan/usa-housing-listings
+
 Introduction
 
 Accurately estimating the value of real estate is an important problem for many stakeholders including house owners, house buyers, agents, creditors, and investors. It is also a difficult one. Though it is common knowledge that factors such as the size, number of rooms and location affect the price, there are many other things at play. Additionally, prices are sensitive to changes in market demand and the peculiarities of each situation, such as when a property needs to be urgently sold.
