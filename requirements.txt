@@ -5,3 +5,4 @@ autopep8
 flask
 pandas
 scikit-learn
+gunicorn==22.0.0
