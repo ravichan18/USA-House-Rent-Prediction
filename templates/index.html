@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Price Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.4;
+        }
+        h1 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .prediction-result {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #007BFF;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        label {
+            flex: 1;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            flex: 2;
+            padding: 5px;
+            font-size: 0.9em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 8px;
+            font-size: 0.9em;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Price Prediction</h1>
+
+    <div id="prediction" class="prediction-result">
+        Predicted Price: <span id="price">{{ prediction }}</span>
+    </div>
+
+    <form method="POST" id="prediction-form">
+        {% for feature, submitted_value in submitted_values.items() %}
+        <div class="form-group">
+            <label for="{{ feature }}">{{ feature }}:</label>
+            <input type="text" id="{{ feature }}" name="{{ feature }}" value="{{ submitted_value }}">
+        </div>
+        {% endfor %}
+        <button type="submit">Get Prediction</button>
+    </form>
+
+</body>
+</html>
