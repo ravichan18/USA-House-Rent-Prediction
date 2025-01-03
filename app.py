@@ -4,7 +4,7 @@ import numpy as np
 from flask import Flask, render_template, request
 
 # Load the saved model
-loaded_model = joblib.load('RFG_Regression_model.joblib')
+loaded_model = joblib.load('RFG_Regression_model_compresses.joblib')
 
 # Access the components of the loaded model
 model = loaded_model['model']
