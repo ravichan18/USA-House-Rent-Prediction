@@ -34,9 +34,16 @@
             font-weight: bold;
         }
         input[type="text"] {
-            flex: 2;
-            padding: 5px;
-            font-size: 0.9em;
+            flex: 1;  
+            padding: 2px;  
+            font-size: 0.8em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        select {
+            flex: 1;  
+            padding: 2px; 
+            font-size: 0.8em;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
@@ -63,12 +70,66 @@
     </div>
 
     <form method="POST" id="prediction-form">
-        {% for feature, submitted_value in submitted_values.items() %}
-        <div class="form-group">
-            <label for="{{ feature }}">{{ feature }}:</label>
-            <input type="text" id="{{ feature }}" name="{{ feature }}" value="{{ submitted_value }}">
-        </div>
+        {% for feature, submitted_value in submitted_values.items() %}    
+            <div class="form-group">
+                <label for="{{ feature }}">{{ feature }}:</label>
+                {% if feature in ['type', 'beds', 'baths', 'cats_allowed', 'dogs_allowed', 'laundry_options', 'parking_options', 'state'] %}
+                    <select id="{{ feature }}" name="{{ feature }}">
+                        {% if feature == 'type' %}
+                            <option value="apartment" {% if submitted_value == 'apartment' %}selected{% endif %}>apartment</option>
+                            <option value="condo" {% if submitted_value == 'condo' %}selected{% endif %}>condo</option>
+                            <option value="house" {% if submitted_value == 'house' %}selected{% endif %}>house</option>
+                            <option value="townhouse" {% if submitted_value == 'townhouse' %}selected{% endif %}>townhouse</option>
+                        {% elif feature == 'beds' %}
+                            {% for i in range(9) %}
+                                <option value="{{ i }}" {% if submitted_value|int == i %}selected{% endif %}>{{ i }}</option>
+                            {% endfor %} 
+                        {% elif feature == 'baths' %}
+                            {% for i in range(6) %}
+                                <option value="{{ i }}" {% if submitted_value|int == i %}selected{% endif %}>{{ i }}</option>
+                            {% endfor %}                            
+                       {% elif feature in ['cats_allowed', 'dogs_allowed'] %}
+                            <option value="0" {% if submitted_value == '0' %}selected{% endif %}>No</option>
+                            <option value="1" {% if submitted_value == '1' %}selected{% endif %}>Yes</option>
+                        {% elif feature == 'laundry_options' %}
+                            <option value="in_unit" {% if submitted_value == 'in_unit' %}selected{% endif %}>in_unit</option>
+                            <option value="on_site" {% if submitted_value == 'on_site' %}selected{% endif %}>on_site</option>
+                            <option value="no_laundry" {% if submitted_value == 'no_laundry' %}selected{% endif %}>no_laundry</option>                        
+                        {% elif feature == 'parking_options' %}
+                            <option value="off_street" {% if submitted_value == 'off_street' %}selected{% endif %}>off_street</option>
+                            <option value="carport" {% if submitted_value == 'carport' %}selected{% endif %}>carport</option>
+                            <option value="attached_garage" {% if submitted_value == 'attached_garage' %}selected{% endif %}>attached_garage</option>
+                            <option value="detached_garage" {% if submitted_value == 'detached_garage' %}selected{% endif %}>detached_garage</option>
+                            <option value="no_parking" {% if submitted_value == 'no_parking' %}selected{% endif %}>no_parking</option>
+                        {% elif feature == 'state' %}
+                            <option value="ca" {% if submitted_value == 'ca' %}selected{% endif %}>ca</option>
+                            <option value="co" {% if submitted_value == 'co' %}selected{% endif %}>co</option>
+                            <option value="ct" {% if submitted_value == 'ct' %}selected{% endif %}>ct</option>
+                            <option value="dc" {% if submitted_value == 'dc' %}selected{% endif %}>dc</option>
+                            <option value="fl" {% if submitted_value == 'fl' %}selected{% endif %}>fl</option>
+                            <option value="ga" {% if submitted_value == 'ga' %}selected{% endif %}>ga</option>
+                            <option value="il" {% if submitted_value == 'il' %}selected{% endif %}>il</option>                        
+                            <option value="in" {% if submitted_value == 'in' %}selected{% endif %}>in</option>
+                            <option value="ia" {% if submitted_value == 'ia' %}selected{% endif %}>ia</option>
+                            <option value="ks" {% if submitted_value == 'ks' %}selected{% endif %}>ks</option>
+                            <option value="ky" {% if submitted_value == 'ky' %}selected{% endif %}>ky</option>
+                            <option value="la" {% if submitted_value == 'la' %}selected{% endif %}>la</option>
+                            <option value="md" {% if submitted_value == 'md' %}selected{% endif %}>md</option>
+                            <option value="ma" {% if submitted_value == 'ma' %}selected{% endif %}>ma</option>
+                            <option value="mi" {% if submitted_value == 'mi' %}selected{% endif %}>mi</option>
+                            <option value="mn" {% if submitted_value == 'mn' %}selected{% endif %}>mn</option>
+                            <option value="ms" {% if submitted_value == 'ms' %}selected{% endif %}>ms</option>
+                            <option value="mo" {% if submitted_value == 'mo' %}selected{% endif %}>mo</option>
+                            <option value="mt" {% if submitted_value == 'mt' %}selected{% endif %}>mt</option>
+                        
+                        {% endif %}
+                    </select>
+                {% else %}
+                    <input type="text" id="{{ feature }}" name="{{ feature }}" value="{{ submitted_value }}">
+                {% endif %}
+            </div>
         {% endfor %}
+            
         <button type="submit">Get Prediction</button>
     </form>
 
